@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Linkedin, Github, MapPin, Phone } from "lucide-react";
+import { Mail, Linkedin, Github, MapPin, Phone, Send, ArrowUpRight } from "lucide-react";
 
 const contactInfo = [
   { icon: Mail, label: "Email", value: "your.email@example.com", link: "mailto:your.email@example.com" },
@@ -9,74 +8,82 @@ const contactInfo = [
 ];
 
 const socialLinks = [
-  { icon: Linkedin, label: "LinkedIn", link: "https://linkedin.com/in/yourprofile", color: "text-[#0077b5]" },
-  { icon: Github, label: "GitHub", link: "https://github.com/yourprofile", color: "text-foreground" },
-  { icon: Mail, label: "Email", link: "mailto:your.email@example.com", color: "text-primary" },
+  { icon: Linkedin, label: "LinkedIn", link: "https://linkedin.com/in/yourprofile", desc: "Connect professionally" },
+  { icon: Github, label: "GitHub", link: "https://github.com/yourprofile", desc: "View my repositories" },
+  { icon: Mail, label: "Email", link: "mailto:your.email@example.com", desc: "Send me a message" },
 ];
 
 export const Contact = () => {
   return (
-    <section id="contact" className="section-padding bg-card/50">
+    <section id="contact" className="section-padding relative">
       <div className="container mx-auto max-w-4xl">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center">
-          Get In <span className="gradient-text">Touch</span>
+        <div className="flex items-center gap-3 mb-2 justify-center">
+          <div className="h-[1px] w-12 bg-primary/50" />
+          <span className="text-xs font-mono text-primary uppercase tracking-[0.3em]">Contact</span>
+          <div className="h-[1px] w-12 bg-primary/50" />
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center tracking-tight">
+          Let's <span className="gradient-text">Connect</span>
         </h2>
-        <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-          Let's collaborate on your next project. Feel free to reach out!
+        <p className="text-muted-foreground text-center mb-14 max-w-2xl mx-auto">
+          Have a project in mind or want to collaborate? I'd love to hear from you.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <Card className="bg-background/50 border-border/50">
-            <CardContent className="p-6 space-y-6">
-              <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
-              {contactInfo.map((item, index) => (
-                <div key={index} className="flex items-start gap-4">
-                  <div className="p-2 rounded-lg bg-primary/10">
-                    <item.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">{item.label}</p>
-                    {item.link ? (
-                      <a href={item.link} className="font-medium hover:text-primary transition-colors">
-                        {item.value}
-                      </a>
-                    ) : (
-                      <p className="font-medium">{item.value}</p>
-                    )}
-                  </div>
+        <div className="grid md:grid-cols-2 gap-6 mb-10">
+          {/* Contact info */}
+          <div className="card-cyber rounded-lg p-6 space-y-6">
+            <h3 className="text-lg font-bold font-mono flex items-center gap-2">
+              <Send className="w-4 h-4 text-primary" />
+              Get in Touch
+            </h3>
+            {contactInfo.map((item, index) => (
+              <div key={index} className="flex items-center gap-4 group">
+                <div className="p-2.5 rounded-lg bg-primary/5 border border-primary/10 group-hover:border-primary/30 group-hover:bg-primary/10 transition-all">
+                  <item.icon className="w-4 h-4 text-primary" />
                 </div>
-              ))}
-            </CardContent>
-          </Card>
-
-          <Card className="bg-background/50 border-border/50">
-            <CardContent className="p-6">
-              <h3 className="text-xl font-semibold mb-4">Connect With Me</h3>
-              <p className="text-muted-foreground mb-6">
-                Follow me on social media or send me a message directly
-              </p>
-              <div className="flex flex-col gap-3">
-                {socialLinks.map((social, index) => (
-                  <Button
-                    key={index}
-                    variant="outline"
-                    className="w-full justify-start border-border hover:bg-primary/10"
-                    asChild
-                  >
-                    <a href={social.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
-                      <social.icon className={`w-5 h-5 ${social.color}`} />
-                      <span>{social.label}</span>
+                <div>
+                  <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">{item.label}</p>
+                  {item.link ? (
+                    <a href={item.link} className="text-sm font-medium hover:text-primary transition-colors">
+                      {item.value}
                     </a>
-                  </Button>
-                ))}
+                  ) : (
+                    <p className="text-sm font-medium">{item.value}</p>
+                  )}
+                </div>
               </div>
-            </CardContent>
-          </Card>
+            ))}
+          </div>
+
+          {/* Social links */}
+          <div className="space-y-3">
+            {socialLinks.map((social, index) => (
+              <a
+                key={index}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-cyber rounded-lg p-5 flex items-center gap-4 group hover-lift block"
+              >
+                <div className="p-2.5 rounded-lg bg-secondary/50 group-hover:bg-primary/10 transition-all">
+                  <social.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold text-sm group-hover:text-primary transition-colors">{social.label}</p>
+                  <p className="text-xs text-muted-foreground">{social.desc}</p>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-muted-foreground/30 group-hover:text-primary transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            ))}
+          </div>
         </div>
 
         <div className="text-center">
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
-            <a href="mailto:your.email@example.com">Send Me an Email</a>
+          <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-mono" asChild>
+            <a href="mailto:your.email@example.com">
+              <Mail className="w-4 h-4 mr-2" />
+              Send Email
+            </a>
           </Button>
         </div>
       </div>

@@ -1,6 +1,5 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, Award, BookOpen } from "lucide-react";
+import { GraduationCap, Award, BookOpen, ExternalLink } from "lucide-react";
 
 const education = [
   {
@@ -23,73 +22,82 @@ const certifications = [
     issuer: "Amazon Web Services",
     year: "2024",
     badge: "AWS",
+    color: "text-accent",
   },
   {
     name: "Google Cloud Professional ML Engineer",
     issuer: "Google Cloud",
     year: "2024",
     badge: "GCP",
+    color: "text-neon-blue",
   },
   {
     name: "Deep Learning Specialization",
     issuer: "Coursera – DeepLearning.AI",
     year: "2023",
     badge: "Coursera",
+    color: "text-primary",
   },
   {
     name: "TensorFlow Developer Certificate",
     issuer: "Google",
     year: "2023",
     badge: "Google",
+    color: "text-neon-green",
   },
   {
     name: "Natural Language Processing Specialization",
     issuer: "Coursera – DeepLearning.AI",
     year: "2023",
     badge: "Coursera",
+    color: "text-primary",
   },
   {
     name: "Microsoft Certified: Azure AI Engineer Associate",
     issuer: "Microsoft",
     year: "2024",
     badge: "Azure",
+    color: "text-neon-blue",
   },
 ];
 
 export const Education = () => {
   return (
-    <section id="education" className="section-padding bg-card/50">
+    <section id="education" className="section-padding relative">
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center">
+        <div className="flex items-center gap-3 mb-2 justify-center">
+          <div className="h-[1px] w-12 bg-primary/50" />
+          <span className="text-xs font-mono text-primary uppercase tracking-[0.3em]">Credentials</span>
+          <div className="h-[1px] w-12 bg-primary/50" />
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center tracking-tight">
           Education & <span className="gradient-text">Certifications</span>
         </h2>
-        <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-          Continuous learning through formal education and industry-recognized certifications
+        <p className="text-muted-foreground text-center mb-14 max-w-2xl mx-auto">
+          Continuous learning through formal education and industry certifications
         </p>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Education */}
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 rounded-lg bg-primary/10">
-                <GraduationCap className="w-6 h-6 text-primary" />
+              <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
+                <GraduationCap className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="text-2xl font-bold">Education</h3>
+              <h3 className="text-xl font-bold font-mono">Education</h3>
             </div>
             <div className="space-y-4">
               {education.map((item, index) => (
-                <Card key={index} className="hover-lift bg-background/50 border-border/50">
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-2">
-                      <h4 className="font-semibold text-lg">{item.degree}</h4>
-                      <Badge variant="outline" className="text-xs shrink-0 ml-2">
-                        {item.year}
-                      </Badge>
-                    </div>
-                    <p className="text-primary text-sm font-medium mb-2">{item.institution}</p>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
-                  </CardContent>
-                </Card>
+                <div key={index} className="card-cyber rounded-lg p-6 hover-lift">
+                  <div className="flex items-start justify-between mb-2">
+                    <h4 className="font-semibold text-base">{item.degree}</h4>
+                    <span className="text-[10px] font-mono text-primary px-2 py-1 rounded bg-primary/5 border border-primary/20 shrink-0 ml-2">
+                      {item.year}
+                    </span>
+                  </div>
+                  <p className="text-accent text-sm font-medium mb-2">{item.institution}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+                </div>
               ))}
             </div>
           </div>
@@ -97,28 +105,28 @@ export const Education = () => {
           {/* Certifications */}
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 rounded-lg bg-primary/10">
-                <Award className="w-6 h-6 text-primary" />
+              <div className="p-2 rounded-lg bg-accent/10 border border-accent/20">
+                <Award className="w-5 h-5 text-accent" />
               </div>
-              <h3 className="text-2xl font-bold">Certifications</h3>
+              <h3 className="text-xl font-bold font-mono">Certifications</h3>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {certifications.map((cert, index) => (
-                <Card key={index} className="hover-lift bg-background/50 border-border/50 group">
-                  <CardContent className="flex items-center gap-4 p-5">
-                    <div className="p-2 rounded-lg bg-accent/10 group-hover:bg-primary/10 transition-colors">
-                      <BookOpen className="w-5 h-5 text-accent group-hover:text-primary transition-colors" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-sm leading-tight">{cert.name}</h4>
-                      <p className="text-xs text-muted-foreground mt-1">{cert.issuer}</p>
-                    </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <Badge className="text-xs">{cert.badge}</Badge>
-                      <span className="text-xs text-muted-foreground">{cert.year}</span>
-                    </div>
-                  </CardContent>
-                </Card>
+                <div key={index} className="card-cyber rounded-lg p-4 hover-lift group flex items-center gap-4">
+                  <div className="p-2 rounded bg-secondary/50 group-hover:bg-primary/10 transition-colors">
+                    <BookOpen className={`w-4 h-4 ${cert.color} transition-colors`} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-medium text-sm leading-tight group-hover:text-primary transition-colors">{cert.name}</h4>
+                    <p className="text-[11px] text-muted-foreground mt-0.5">{cert.issuer}</p>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <Badge variant="outline" className="text-[10px] font-mono border-border/50">
+                      {cert.badge}
+                    </Badge>
+                    <span className="text-[10px] font-mono text-muted-foreground">{cert.year}</span>
+                  </div>
+                </div>
               ))}
             </div>
           </div>

@@ -1,52 +1,92 @@
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState } from "react";
 
 const skillCategories = [
   {
+    title: "AI / Machine Learning",
+    icon: "🧠",
+    skills: ["PyTorch", "TensorFlow", "Scikit-learn", "Hugging Face", "LangChain", "OpenAI API", "Computer Vision", "NLP"],
+  },
+  {
     title: "Frontend",
-    skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "HTML5", "CSS3", "JavaScript"],
+    icon: "🎨",
+    skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Three.js", "Framer Motion"],
   },
   {
-    title: "Backend",
-    skills: ["Node.js", "Express", "PostgreSQL", "REST APIs", "GraphQL", "MongoDB"],
+    title: "Backend & Cloud",
+    icon: "⚙️",
+    skills: ["Python", "Node.js", "FastAPI", "PostgreSQL", "Docker", "AWS", "GCP", "Kubernetes"],
   },
   {
-    title: "Tools & Others",
-    skills: ["Git", "Docker", "AWS", "Figma", "VS Code", "Agile", "CI/CD"],
+    title: "Data & Tools",
+    icon: "📊",
+    skills: ["Pandas", "NumPy", "MLflow", "Git", "Jupyter", "Weights & Biases", "DVC", "Airflow"],
   },
 ];
 
 export const Skills = () => {
+  const [activeTab, setActiveTab] = useState(0);
+
   return (
-    <section id="skills" className="section-padding">
+    <section id="skills" className="section-padding relative">
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center">
+        <div className="flex items-center gap-3 mb-2 justify-center">
+          <div className="h-[1px] w-12 bg-primary/50" />
+          <span className="text-xs font-mono text-primary uppercase tracking-[0.3em]">Tech Stack</span>
+          <div className="h-[1px] w-12 bg-primary/50" />
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center tracking-tight">
           My <span className="gradient-text">Skills</span>
         </h2>
-        <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-          Technologies and tools I work with to bring ideas to life
+        <p className="text-muted-foreground text-center mb-14 max-w-2xl mx-auto">
+          Technologies and tools I use to build intelligent systems
         </p>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {skillCategories.map((category, index) => (
-            <Card key={index} className="hover-lift bg-card border-border/50">
-              <CardHeader>
-                <CardTitle className="text-xl gradient-text">{category.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, skillIndex) => (
-                    <Badge
-                      key={skillIndex}
-                      variant="secondary"
-                      className="bg-primary/10 text-primary hover:bg-primary/20 border-primary/20"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+        {/* Tab navigation */}
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {skillCategories.map((cat, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveTab(i)}
+              className={`px-5 py-2.5 rounded-lg text-sm font-mono transition-all duration-300 border ${
+                activeTab === i
+                  ? "bg-primary/10 border-primary/30 text-primary shadow-[0_0_15px_hsl(280_100%_65%/0.1)]"
+                  : "bg-secondary/30 border-border/50 text-muted-foreground hover:text-foreground hover:border-border"
+              }`}
+            >
+              <span className="mr-2">{cat.icon}</span>
+              {cat.title}
+            </button>
+          ))}
+        </div>
+
+        {/* Skills grid */}
+        <div className="max-w-3xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {skillCategories[activeTab].skills.map((skill, skillIndex) => (
+              <div
+                key={skill}
+                className="card-cyber rounded-lg p-4 text-center hover-lift group cursor-default"
+                style={{ animationDelay: `${skillIndex * 50}ms` }}
+              >
+                <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                  {skill}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* All skills inline */}
+        <div className="mt-12 flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
+          {skillCategories.flatMap(c => c.skills).map((skill) => (
+            <Badge
+              key={skill}
+              variant="outline"
+              className="border-border/50 text-muted-foreground/70 text-[10px] font-mono hover:border-primary/30 hover:text-primary transition-all cursor-default"
+            >
+              {skill}
+            </Badge>
           ))}
         </div>
       </div>

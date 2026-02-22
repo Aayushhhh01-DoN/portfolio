@@ -1,3 +1,5 @@
+import { MatrixBackground } from "@/components/MatrixBackground";
+import { FloatingGeometry } from "@/components/FloatingGeometry";
 import { MouseFollower } from "@/components/MouseFollower";
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
@@ -12,6 +14,8 @@ import { Footer } from "@/components/Footer";
 const Index = () => {
   return (
     <div className="relative min-h-screen">
+      <MatrixBackground />
+      <FloatingGeometry />
       <MouseFollower />
       <Navigation />
       <Hero />

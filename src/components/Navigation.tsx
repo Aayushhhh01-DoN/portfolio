@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Terminal } from "lucide-react";
+import { Menu, X, Terminal, Wifi } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
@@ -20,7 +20,6 @@ export const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
       const sections = navItems.map(item => item.href.slice(1));
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
@@ -30,7 +29,6 @@ export const Navigation = () => {
         }
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -39,38 +37,46 @@ export const Navigation = () => {
     <nav
       className={`fixed top-0 z-50 w-full transition-all duration-500 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-primary/10 shadow-[0_4px_30px_hsl(280_100%_65%/0.05)]"
+          ? "bg-background/70 backdrop-blur-2xl border-b border-primary/10 shadow-[0_4px_30px_hsl(280_100%_65%/0.08)]"
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-6 py-4 md:px-12">
+      {/* Top scanline */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      
+      <div className="container mx-auto flex items-center justify-between px-6 py-3 md:px-12">
         <a href="#home" className="flex items-center gap-2 group">
-          <Terminal className="w-5 h-5 text-primary group-hover:text-accent transition-colors" />
+          <div className="relative">
+            <Terminal className="w-5 h-5 text-primary group-hover:text-accent transition-colors" />
+            <div className="absolute -inset-1 bg-primary/20 rounded blur-sm group-hover:bg-accent/20 transition-colors" />
+          </div>
           <span className="font-mono text-sm font-bold tracking-wider">
-            <span className="text-primary">&lt;</span>
+            <span className="text-primary neon-glow">&lt;</span>
             <span className="text-foreground">Portfolio</span>
-            <span className="text-accent">/</span>
-            <span className="text-primary">&gt;</span>
+            <span className="text-accent neon-glow-accent">/</span>
+            <span className="text-primary neon-glow">&gt;</span>
           </span>
         </a>
 
-        <div className="hidden md:flex gap-1">
+        <div className="hidden md:flex gap-0.5 items-center bg-secondary/30 rounded-lg p-1 border border-border/30">
           {navItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className={`relative px-4 py-2 text-xs font-mono uppercase tracking-widest transition-all duration-300 rounded ${
+              className={`relative px-3 py-1.5 text-[11px] font-mono uppercase tracking-widest transition-all duration-300 rounded-md ${
                 activeSection === item.href.slice(1)
-                  ? "text-primary bg-primary/5"
+                  ? "text-primary bg-primary/10 neon-box"
                   : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
               }`}
             >
-              {activeSection === item.href.slice(1) && (
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-primary rounded-full" />
-              )}
               {item.label}
             </a>
           ))}
+        </div>
+
+        <div className="hidden md:flex items-center gap-2">
+          <Wifi className="w-3 h-3 text-neon-green animate-pulse" />
+          <span className="text-[10px] font-mono text-neon-green">ONLINE</span>
         </div>
 
         <Button
@@ -84,20 +90,21 @@ export const Navigation = () => {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-card/95 backdrop-blur-xl border-t border-primary/10">
+        <div className="md:hidden bg-card/95 backdrop-blur-2xl border-t border-primary/10 cyber-scanlines">
           <div className="flex flex-col p-4">
-            {navItems.map((item) => (
+            {navItems.map((item, i) => (
               <a
                 key={item.label}
                 href={item.href}
                 className={`px-4 py-3 text-sm font-mono uppercase tracking-widest transition-all rounded ${
                   activeSection === item.href.slice(1)
-                    ? "text-primary bg-primary/5"
+                    ? "text-primary bg-primary/5 neon-box"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
+                style={{ animationDelay: `${i * 50}ms` }}
               >
-                <span className="text-primary mr-2">//</span>
+                <span className="text-primary mr-2">{String(i + 1).padStart(2, '0')}.</span>
                 {item.label}
               </a>
             ))}

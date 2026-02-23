@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['Sora', 'sans-serif'],
+        body: ['Outfit', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
-        display: ['Inter', 'sans-serif'],
+        display: ['Cabinet Grotesk', 'Satoshi', 'Outfit', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -21,25 +21,22 @@ export const MouseFollower = () => {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      {/* Main glow */}
       <div
-        className="absolute h-[600px] w-[600px] rounded-full opacity-20 blur-[120px] transition-all duration-1000 ease-out"
+        className="absolute h-[600px] w-[600px] rounded-full opacity-15 blur-[120px] transition-all duration-1000 ease-out"
         style={{
           background: "var(--gradient-primary)",
           left: `${position.x - 300}px`,
           top: `${position.y - 300}px`,
         }}
       />
-      {/* Secondary glow */}
       <div
-        className="absolute h-[300px] w-[300px] rounded-full opacity-15 blur-[80px] transition-all duration-500 ease-out"
+        className="absolute h-[300px] w-[300px] rounded-full opacity-10 blur-[80px] transition-all duration-500 ease-out"
         style={{
-          background: `radial-gradient(circle, hsl(200 100% 60% / 0.5), transparent)`,
+          background: `radial-gradient(circle, hsl(200 90% 55% / 0.4), transparent)`,
           left: `${position.x - 150}px`,
           top: `${position.y - 150}px`,
         }}
       />
-      {/* Trail particles */}
       {trail.map((point, i) => (
         <div
           key={point.id}
@@ -47,18 +44,17 @@ export const MouseFollower = () => {
           style={{
             left: `${point.x}px`,
             top: `${point.y}px`,
-            opacity: (i + 1) * 0.08,
-            transform: `scale(${(i + 1) * 0.5})`,
+            opacity: (i + 1) * 0.06,
+            transform: `scale(${(i + 1) * 0.4})`,
             transition: "all 0.3s ease-out",
           }}
         />
       ))}
-      {/* Grid overlay */}
       <div
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute inset-0 opacity-[0.015]"
         style={{
-          backgroundImage: `linear-gradient(hsl(280 100% 65% / 0.3) 1px, transparent 1px),
-                           linear-gradient(90deg, hsl(280 100% 65% / 0.3) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(hsl(175 85% 50% / 0.2) 1px, transparent 1px),
+                           linear-gradient(90deg, hsl(175 85% 50% / 0.2) 1px, transparent 1px)`,
           backgroundSize: "60px 60px",
         }}
       />

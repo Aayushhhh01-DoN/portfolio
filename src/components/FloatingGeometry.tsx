@@ -41,20 +41,19 @@ export const FloatingGeometry = () => {
     };
     window.addEventListener("mousemove", handleMouse);
 
-    // Create particles
     const types: Particle["type"][] = ["circle", "diamond", "triangle", "hex"];
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 35; i++) {
       particles.push({
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: 3 + Math.random() * 8,
-        hue: [280, 340, 200, 150][Math.floor(Math.random() * 4)],
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        size: 3 + Math.random() * 7,
+        hue: [175, 32, 200, 160][Math.floor(Math.random() * 4)],
         type: types[Math.floor(Math.random() * types.length)],
         rotation: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.02,
-        opacity: 0.1 + Math.random() * 0.3,
+        rotationSpeed: (Math.random() - 0.5) * 0.015,
+        opacity: 0.08 + Math.random() * 0.2,
         pulsePhase: Math.random() * Math.PI * 2,
       });
     }
@@ -65,10 +64,10 @@ export const FloatingGeometry = () => {
       ctx.rotate(p.rotation);
       const pulse = Math.sin(Date.now() * 0.002 + p.pulsePhase) * 0.3 + 0.7;
       ctx.globalAlpha = p.opacity * pulse;
-      ctx.strokeStyle = `hsl(${p.hue}, 100%, 60%)`;
+      ctx.strokeStyle = `hsl(${p.hue}, 80%, 50%)`;
       ctx.lineWidth = 1;
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = `hsl(${p.hue}, 100%, 60%)`;
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = `hsl(${p.hue}, 80%, 50%)`;
 
       const s = p.size;
       ctx.beginPath();
@@ -100,15 +99,14 @@ export const FloatingGeometry = () => {
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw connections
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 200) {
+          if (dist < 180) {
             ctx.beginPath();
-            ctx.strokeStyle = `hsla(280, 100%, 65%, ${0.05 * (1 - dist / 200)})`;
+            ctx.strokeStyle = `hsla(175, 80%, 50%, ${0.04 * (1 - dist / 180)})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -118,13 +116,12 @@ export const FloatingGeometry = () => {
       }
 
       particles.forEach((p) => {
-        // Mouse repulsion
         const dx = p.x - mouseX;
         const dy = p.y - mouseY;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 200) {
-          p.vx += (dx / dist) * 0.3;
-          p.vy += (dy / dist) * 0.3;
+        if (dist < 180) {
+          p.vx += (dx / dist) * 0.25;
+          p.vy += (dy / dist) * 0.25;
         }
 
         p.x += p.vx;
@@ -133,7 +130,6 @@ export const FloatingGeometry = () => {
         p.vy *= 0.99;
         p.rotation += p.rotationSpeed;
 
-        // Wrap
         if (p.x < -20) p.x = canvas.width + 20;
         if (p.x > canvas.width + 20) p.x = -20;
         if (p.y < -20) p.y = canvas.height + 20;

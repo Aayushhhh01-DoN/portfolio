@@ -25,7 +25,7 @@ export const MatrixBackground = () => {
     window.addEventListener("resize", resize);
 
     const draw = () => {
-      ctx.fillStyle = "rgba(5, 3, 15, 0.06)";
+      ctx.fillStyle = "rgba(5, 8, 18, 0.06)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < drops.length; i++) {
@@ -33,17 +33,16 @@ export const MatrixBackground = () => {
         const x = i * fontSize;
         const y = drops[i] * fontSize;
 
-        // Color variation
-        const hue = 280 + Math.sin(i * 0.1 + Date.now() * 0.001) * 60;
-        const brightness = 40 + Math.random() * 30;
-        ctx.fillStyle = `hsl(${hue}, 100%, ${brightness}%)`;
+        // Teal-to-amber color variation
+        const hue = 175 + Math.sin(i * 0.1 + Date.now() * 0.001) * 40;
+        const brightness = 35 + Math.random() * 25;
+        ctx.fillStyle = `hsl(${hue}, 80%, ${brightness}%)`;
         ctx.font = `${fontSize}px JetBrains Mono, monospace`;
         ctx.fillText(char, x, y);
 
-        // Head glow
         if (Math.random() > 0.95) {
           ctx.shadowBlur = 15;
-          ctx.shadowColor = `hsl(${hue}, 100%, 70%)`;
+          ctx.shadowColor = `hsl(${hue}, 85%, 55%)`;
           ctx.fillText(char, x, y);
           ctx.shadowBlur = 0;
         }
@@ -66,7 +65,7 @@ export const MatrixBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-0 pointer-events-none opacity-30"
+      className="fixed inset-0 z-0 pointer-events-none opacity-20"
     />
   );
 };

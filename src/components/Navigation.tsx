@@ -37,18 +37,17 @@ export const Navigation = () => {
     <nav
       className={`fixed top-0 z-50 w-full transition-all duration-500 ${
         isScrolled
-          ? "bg-background/70 backdrop-blur-2xl border-b border-primary/10 shadow-[0_4px_30px_hsl(280_100%_65%/0.08)]"
+          ? "bg-background/70 backdrop-blur-2xl border-b border-primary/10 shadow-[0_4px_30px_hsl(175_85%_50%/0.05)]"
           : "bg-transparent"
       }`}
     >
-      {/* Top scanline */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
       
       <div className="container mx-auto flex items-center justify-between px-6 py-3 md:px-12">
         <a href="#home" className="flex items-center gap-2 group">
           <div className="relative">
             <Terminal className="w-5 h-5 text-primary group-hover:text-accent transition-colors" />
-            <div className="absolute -inset-1 bg-primary/20 rounded blur-sm group-hover:bg-accent/20 transition-colors" />
+            <div className="absolute -inset-1 bg-primary/15 rounded blur-sm group-hover:bg-accent/15 transition-colors" />
           </div>
           <span className="font-mono text-sm font-bold tracking-wider">
             <span className="text-primary neon-glow">&lt;</span>

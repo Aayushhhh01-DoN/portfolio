@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Mail, Linkedin, Github, MapPin, Phone, Send, ArrowUpRight, Zap } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const contactInfo = [
   { icon: Mail, label: "Email", value: "your.email@example.com", link: "mailto:your.email@example.com" },
@@ -14,9 +15,11 @@ const socialLinks = [
 ];
 
 export const Contact = () => {
+  const { ref, isVisible } = useScrollReveal();
+
   return (
     <section id="contact" className="section-padding relative">
-      <div className="container mx-auto max-w-4xl">
+      <div ref={ref} className={`container mx-auto max-w-4xl transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
         <div className="flex items-center gap-3 mb-2 justify-center">
           <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-primary/50" />
           <span className="text-xs font-mono text-primary uppercase tracking-[0.3em] neon-glow">// Contact</span>
@@ -30,11 +33,9 @@ export const Contact = () => {
         </p>
 
         <div className="grid md:grid-cols-2 gap-6 mb-10">
-          {/* Contact info */}
-          <div className="card-cyber rounded-lg p-6 space-y-6 glow-border">
+          <div className={`card-cyber rounded-lg p-6 space-y-6 glow-border transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
             <h3 className="text-lg font-bold font-mono flex items-center gap-2">
-              <Send className="w-4 h-4 text-primary" />
-              Get in Touch
+              <Send className="w-4 h-4 text-primary" /> Get in Touch
               <Zap className="w-3 h-3 text-neon-yellow animate-pulse" />
             </h3>
             {contactInfo.map((item, index) => (
@@ -45,9 +46,7 @@ export const Contact = () => {
                 <div>
                   <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">{item.label}</p>
                   {item.link ? (
-                    <a href={item.link} className="text-sm font-medium hover:text-primary hover:neon-glow transition-all">
-                      {item.value}
-                    </a>
+                    <a href={item.link} className="text-sm font-medium hover:text-primary hover:neon-glow transition-all">{item.value}</a>
                   ) : (
                     <p className="text-sm font-medium">{item.value}</p>
                   )}
@@ -56,8 +55,7 @@ export const Contact = () => {
             ))}
           </div>
 
-          {/* Social links */}
-          <div className="space-y-3">
+          <div className={`space-y-3 transition-all duration-700 delay-400 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}>
             {socialLinks.map((social, index) => (
               <a
                 key={index}
@@ -82,8 +80,7 @@ export const Contact = () => {
         <div className="text-center">
           <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-mono neon-box hover:shadow-[0_0_40px_hsl(280_100%_65%/0.5)] transition-shadow" asChild>
             <a href="mailto:your.email@example.com">
-              <Mail className="w-4 h-4 mr-2" />
-              Send Email
+              <Mail className="w-4 h-4 mr-2" /> Send Email
             </a>
           </Button>
         </div>

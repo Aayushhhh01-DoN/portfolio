@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Code2, Palette, Sparkles, Brain, Cpu, Network } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const highlights = [
   { icon: Brain, title: "AI Architecture", description: "Designing scalable ML pipelines and neural network architectures", color: "text-primary", bg: "bg-primary/10", borderColor: "border-primary/20" },
@@ -11,9 +12,11 @@ const highlights = [
 ];
 
 export const About = () => {
+  const { ref, isVisible } = useScrollReveal();
+
   return (
     <section id="about" className="section-padding relative">
-      <div className="container mx-auto max-w-6xl">
+      <div ref={ref} className={`container mx-auto max-w-6xl transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
         <div className="flex items-center gap-3 mb-2 justify-center">
           <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-primary/50" />
           <span className="text-xs font-mono text-primary uppercase tracking-[0.3em] neon-glow">// About Me</span>
@@ -27,7 +30,7 @@ export const About = () => {
         </p>
 
         <div className="grid md:grid-cols-2 gap-16 items-start mb-16">
-          <div className="space-y-6">
+          <div className={`space-y-6 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
             <div className="card-cyber rounded-lg p-6 holo-shimmer">
               <p className="text-lg leading-relaxed relative z-10">
                 I'm an <span className="text-primary font-semibold neon-glow">AI Engineer</span> with a deep passion for 
@@ -64,11 +67,12 @@ export const About = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className={`grid grid-cols-2 gap-3 transition-all duration-700 delay-400 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}>
             {highlights.map((item, index) => (
               <Card
                 key={index}
-                className={`hover-lift card-cyber rounded-lg border-0 group cursor-default glow-border`}
+                className={`hover-lift card-cyber rounded-lg border-0 group cursor-default glow-border transition-all duration-500`}
+                style={{ transitionDelay: `${index * 100 + 500}ms` }}
               >
                 <CardContent className="p-5">
                   <div className={`p-2.5 rounded-lg ${item.bg} border ${item.borderColor} w-fit mb-3 group-hover:scale-110 transition-transform`}>

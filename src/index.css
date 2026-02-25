@@ -275,6 +275,14 @@
   .flicker {
     animation: flicker 4s linear infinite;
   }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 
 @keyframes glitch {

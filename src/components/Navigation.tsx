@@ -43,7 +43,7 @@ export const Navigation = () => {
     >
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
       
-      <div className="container mx-auto flex items-center justify-between px-6 py-3 md:px-12">
+      <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 py-3 md:px-12">
         <a href="#home" className="flex items-center gap-2 group">
           <div className="relative">
             <Terminal className="w-5 h-5 text-primary group-hover:text-accent transition-colors" />
@@ -81,7 +81,7 @@ export const Navigation = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden text-foreground hover:text-primary"
+          className="md:hidden text-foreground hover:text-primary hover:bg-primary/5"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X /> : <Menu />}
@@ -90,18 +90,17 @@ export const Navigation = () => {
 
       {isMobileMenuOpen && (
         <div className="md:hidden bg-card/95 backdrop-blur-2xl border-t border-primary/10 cyber-scanlines">
-          <div className="flex flex-col p-4">
+          <div className="flex flex-col p-3 sm:p-4">
             {navItems.map((item, i) => (
               <a
                 key={item.label}
                 href={item.href}
-                className={`px-4 py-3 text-sm font-mono uppercase tracking-widest transition-all rounded ${
+                className={`px-4 py-2.5 text-sm font-mono uppercase tracking-widest transition-all rounded ${
                   activeSection === item.href.slice(1)
                     ? "text-primary bg-primary/5 neon-box"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
-                style={{ animationDelay: `${i * 50}ms` }}
               >
                 <span className="text-primary mr-2">{String(i + 1).padStart(2, '0')}.</span>
                 {item.label}

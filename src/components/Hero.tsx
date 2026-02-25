@@ -28,33 +28,33 @@ export const Hero = () => {
   }, [displayed, isDeleting, roleIndex]);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center section-padding overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden">
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl float-animation" />
 
       <div className="relative z-10 max-w-7xl mx-auto w-full">
-        <div className="grid md:grid-cols-5 gap-12 items-center">
+        <div className="grid md:grid-cols-5 gap-8 md:gap-12 items-center">
           {/* Content — 3 cols */}
           <div className="md:col-span-3 text-center md:text-left order-2 md:order-1">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon-green/30 bg-neon-green/5 mb-6 pulse-neon">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neon-green/30 bg-neon-green/5 mb-5 pulse-neon">
               <div className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
-              <span className="text-xs font-mono text-neon-green uppercase tracking-widest">System Online — Available for work</span>
+              <span className="text-[10px] sm:text-xs font-mono text-neon-green uppercase tracking-widest">System Online — Available for work</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-2 leading-[0.9] tracking-tight font-display">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-2 leading-[0.9] tracking-tight font-display">
               <span className="text-foreground">Hi, I'm</span>
               <br />
               <span className="gradient-text text-glitch" data-text="Your Name">Your Name</span>
             </h1>
 
-            <div className="h-12 md:h-14 flex items-center justify-center md:justify-start mb-6">
-              <span className="font-mono text-lg md:text-2xl text-muted-foreground">
+            <div className="h-10 sm:h-12 md:h-14 flex items-center justify-center md:justify-start mb-5">
+              <span className="font-mono text-base sm:text-lg md:text-2xl text-muted-foreground">
                 <span className="text-primary">$</span> <span className="text-accent">{displayed}</span>
                 <span className="inline-block w-0.5 h-5 bg-accent ml-1 animate-pulse" />
               </span>
             </div>
 
-            <p className="text-base md:text-lg text-muted-foreground mb-10 max-w-xl leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-8 max-w-xl mx-auto md:mx-0 leading-relaxed">
               I architect intelligent systems that bridge the gap between cutting-edge 
               AI research and production-ready applications. From neural networks to 
               full-stack deployments — <span className="text-primary font-semibold">I make machines think</span>.
@@ -67,7 +67,7 @@ export const Hero = () => {
                   View My Work
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="border-primary/30 text-foreground hover:bg-primary/5 hover:border-primary/50 hover:neon-box transition-all" asChild>
+              <Button size="lg" variant="outline" className="border-primary/30 text-foreground hover:bg-primary/5 hover:border-primary/50 transition-all" asChild>
                 <a href="#contact">Get In Touch</a>
               </Button>
               <Button size="lg" variant="ghost" className="text-muted-foreground hover:text-accent hover:bg-accent/5" asChild>
@@ -79,15 +79,15 @@ export const Hero = () => {
             </div>
 
             {/* Stats */}
-            <div className="flex gap-8 mt-12 justify-center md:justify-start">
+            <div className="flex gap-6 sm:gap-8 mt-10 justify-center md:justify-start">
               {[
                 { num: "5+", label: "Years Exp" },
                 { num: "50+", label: "Projects" },
                 { num: "20+", label: "AI Models" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center md:text-left group cursor-default">
-                  <p className="text-2xl md:text-3xl font-bold gradient-text group-hover:neon-glow transition-all">{stat.num}</p>
-                  <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">{stat.label}</p>
+                  <p className="text-xl sm:text-2xl md:text-3xl font-bold gradient-text group-hover:neon-glow transition-all">{stat.num}</p>
+                  <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -96,16 +96,15 @@ export const Hero = () => {
           {/* Photo — 2 cols */}
           <div className="md:col-span-2 flex justify-center order-1 md:order-2">
             <div className="relative">
-              {/* Orbiting rings */}
-              <div className="absolute -inset-6 rounded-full border border-dashed border-primary/20 animate-[spin_20s_linear_infinite]" />
-              <div className="absolute -inset-12 rounded-full border border-dashed border-accent/10 animate-[spin_30s_linear_infinite_reverse]" />
-              <div className="absolute -inset-16 rounded-full border border-dotted border-neon-blue/10 animate-[spin_40s_linear_infinite]" />
+              {/* Orbiting rings — hidden on small mobile */}
+              <div className="absolute -inset-6 rounded-full border border-dashed border-primary/20 animate-[spin_20s_linear_infinite] hidden sm:block" />
+              <div className="absolute -inset-12 rounded-full border border-dashed border-accent/10 animate-[spin_30s_linear_infinite_reverse] hidden sm:block" />
               
               {/* Glow */}
               <div className="absolute inset-0 rounded-2xl bg-primary/15 blur-3xl animate-pulse" />
               
               {/* Photo container */}
-              <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden border-2 border-primary/30 shadow-[0_0_50px_hsl(175_85%_50%/0.2)] hover:shadow-[0_0_100px_hsl(175_85%_50%/0.35)] transition-all duration-500 hover:scale-105 hover:border-primary/60 scan-line"
+              <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden border-2 border-primary/30 shadow-[0_0_50px_hsl(175_85%_50%/0.2)] hover:shadow-[0_0_100px_hsl(175_85%_50%/0.35)] transition-all duration-500 hover:scale-105 hover:border-primary/60 scan-line"
                 style={{ clipPath: "polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%)" }}
               >
                 <img
@@ -118,13 +117,13 @@ export const Hero = () => {
               </div>
 
               {/* Floating badges */}
-              <div className="absolute -bottom-4 -left-4 px-3 py-1.5 rounded-lg bg-card border border-primary/30 shadow-lg neon-box float-animation">
-                <span className="text-xs font-mono text-primary">🧠 AI/ML</span>
+              <div className="absolute -bottom-3 -left-3 px-2.5 py-1 rounded-lg bg-card border border-primary/30 shadow-lg neon-box float-animation">
+                <span className="text-[10px] font-mono text-primary">🧠 AI/ML</span>
               </div>
-              <div className="absolute -top-4 -right-4 px-3 py-1.5 rounded-lg bg-card border border-accent/30 shadow-lg float-animation" style={{ animationDelay: "1s" }}>
-                <span className="text-xs font-mono text-accent">⚡ Engineer</span>
+              <div className="absolute -top-3 -right-3 px-2.5 py-1 rounded-lg bg-card border border-accent/30 shadow-lg float-animation" style={{ animationDelay: "1s" }}>
+                <span className="text-[10px] font-mono text-accent">⚡ Engineer</span>
               </div>
-              <div className="absolute top-1/2 -right-6 px-2 py-1 rounded-lg bg-card border border-neon-blue/30 shadow-lg float-animation" style={{ animationDelay: "3s" }}>
+              <div className="absolute top-1/2 -right-5 px-2 py-1 rounded-lg bg-card border border-neon-blue/30 shadow-lg float-animation hidden sm:block" style={{ animationDelay: "3s" }}>
                 <span className="text-[10px] font-mono text-neon-blue">🔮 Neural</span>
               </div>
             </div>
@@ -133,9 +132,9 @@ export const Hero = () => {
 
         <a
           href="#about"
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group"
         >
-          <span className="text-xs font-mono text-muted-foreground group-hover:text-primary transition-colors">scroll.down()</span>
+          <span className="text-[10px] font-mono text-muted-foreground group-hover:text-primary transition-colors">scroll.down()</span>
           <ArrowDown className="w-4 h-4 text-primary animate-bounce" />
         </a>
       </div>

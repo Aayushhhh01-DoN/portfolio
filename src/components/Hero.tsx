@@ -29,102 +29,91 @@ export const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden">
-      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl float-animation" />
+      {/* Soft ambient glows */}
+      <div className="absolute top-1/4 left-[10%] w-80 h-80 bg-primary/4 rounded-full blur-[100px]" />
+      <div className="absolute bottom-1/4 right-[10%] w-96 h-96 bg-accent/3 rounded-full blur-[100px]" />
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full">
-        <div className="grid md:grid-cols-5 gap-8 md:gap-12 items-center">
-          {/* Content — 3 cols */}
+      <div className="relative z-10 max-w-6xl mx-auto w-full">
+        <div className="grid md:grid-cols-5 gap-8 md:gap-16 items-center">
+          {/* Content */}
           <div className="md:col-span-3 text-center md:text-left order-2 md:order-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neon-green/30 bg-neon-green/5 mb-5 pulse-neon">
-              <div className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
-              <span className="text-[10px] sm:text-xs font-mono text-neon-green uppercase tracking-widest">System Online — Available for work</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neon-green/20 bg-neon-green/5 mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse" />
+              <span className="text-[10px] sm:text-xs font-mono text-neon-green/80 uppercase tracking-widest">Available for work</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-2 leading-[0.9] tracking-tight font-display">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-3 leading-[1] tracking-tight font-display">
               <span className="text-foreground">Hi, I'm</span>
               <br />
-              <span className="gradient-text text-glitch" data-text="Your Name">Your Name</span>
+              <span className="gradient-text">Your Name</span>
             </h1>
 
-            <div className="h-10 sm:h-12 md:h-14 flex items-center justify-center md:justify-start mb-5">
-              <span className="font-mono text-base sm:text-lg md:text-2xl text-muted-foreground">
-                <span className="text-primary">$</span> <span className="text-accent">{displayed}</span>
-                <span className="inline-block w-0.5 h-5 bg-accent ml-1 animate-pulse" />
+            <div className="h-8 sm:h-10 flex items-center justify-center md:justify-start mb-6">
+              <span className="font-mono text-sm sm:text-base md:text-lg text-muted-foreground">
+                <span className="text-primary/60">→</span> <span className="text-foreground/80">{displayed}</span>
+                <span className="inline-block w-0.5 h-4 bg-primary/60 ml-1 animate-pulse" />
               </span>
             </div>
 
-            <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-8 max-w-xl mx-auto md:mx-0 leading-relaxed">
-              I architect intelligent systems that bridge the gap between cutting-edge 
+            <p className="text-sm sm:text-base text-muted-foreground mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed">
+              I architect intelligent systems that bridge cutting-edge 
               AI research and production-ready applications. From neural networks to 
-              full-stack deployments — <span className="text-primary font-semibold">I make machines think</span>.
+              full-stack deployments — <span className="text-primary font-medium">I make machines think</span>.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground group neon-box hover:shadow-[0_0_30px_hsl(175_85%_50%/0.4)] transition-shadow" asChild>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground group transition-all duration-300 hover:shadow-[0_8px_30px_hsl(172_66%_50%/0.25)]" asChild>
                 <a href="#projects">
-                  <Zap className="w-4 h-4 mr-2 group-hover:animate-pulse" />
+                  <Zap className="w-4 h-4 mr-2" />
                   View My Work
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="border-primary/30 text-foreground hover:bg-primary/5 hover:border-primary/50 transition-all" asChild>
+              <Button size="lg" variant="outline" className="border-border hover:border-primary/40 text-foreground hover:bg-primary/5 transition-all" asChild>
                 <a href="#contact">Get In Touch</a>
               </Button>
-              <Button size="lg" variant="ghost" className="text-muted-foreground hover:text-accent hover:bg-accent/5" asChild>
+              <Button size="lg" variant="ghost" className="text-muted-foreground hover:text-foreground" asChild>
                 <a href="/resume.pdf" download>
                   <Download className="w-4 h-4 mr-2" />
-                  Download CV
+                  CV
                 </a>
               </Button>
             </div>
 
             {/* Stats */}
-            <div className="flex gap-6 sm:gap-8 mt-10 justify-center md:justify-start">
+            <div className="flex gap-8 mt-12 justify-center md:justify-start">
               {[
-                { num: "5+", label: "Years Exp" },
+                { num: "5+", label: "Years" },
                 { num: "50+", label: "Projects" },
                 { num: "20+", label: "AI Models" },
               ].map((stat) => (
-                <div key={stat.label} className="text-center md:text-left group cursor-default">
-                  <p className="text-xl sm:text-2xl md:text-3xl font-bold gradient-text group-hover:neon-glow transition-all">{stat.num}</p>
-                  <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">{stat.label}</p>
+                <div key={stat.label} className="text-center md:text-left">
+                  <p className="text-2xl sm:text-3xl font-bold gradient-text">{stat.num}</p>
+                  <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mt-1">{stat.label}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Photo — 2 cols */}
+          {/* Photo */}
           <div className="md:col-span-2 flex justify-center order-1 md:order-2">
             <div className="relative">
-              {/* Orbiting rings — hidden on small mobile */}
-              <div className="absolute -inset-6 rounded-full border border-dashed border-primary/20 animate-[spin_20s_linear_infinite] hidden sm:block" />
-              <div className="absolute -inset-12 rounded-full border border-dashed border-accent/10 animate-[spin_30s_linear_infinite_reverse] hidden sm:block" />
+              <div className="absolute -inset-8 rounded-3xl bg-gradient-to-br from-primary/10 via-transparent to-accent/5 blur-2xl" />
               
-              {/* Glow */}
-              <div className="absolute inset-0 rounded-2xl bg-primary/15 blur-3xl animate-pulse" />
-              
-              {/* Photo container */}
-              <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden border-2 border-primary/30 shadow-[0_0_50px_hsl(175_85%_50%/0.2)] hover:shadow-[0_0_100px_hsl(175_85%_50%/0.35)] transition-all duration-500 hover:scale-105 hover:border-primary/60 scan-line"
-                style={{ clipPath: "polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%)" }}
-              >
+              <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-2xl overflow-hidden border border-border/80 hover:border-primary/30 transition-all duration-700 hover:shadow-[0_20px_60px_hsl(172_66%_50%/0.12)]">
                 <img
                   src="/placeholder.svg"
                   alt="AI Engineer Portrait"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-primary/10" />
-                <div className="absolute inset-0 holo-shimmer" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" />
               </div>
 
-              {/* Floating badges */}
-              <div className="absolute -bottom-3 -left-3 px-2.5 py-1 rounded-lg bg-card border border-primary/30 shadow-lg neon-box float-animation">
+              {/* Subtle floating badges */}
+              <div className="absolute -bottom-2 -left-2 px-2.5 py-1 rounded-lg bg-card/90 backdrop-blur border border-border/60 float-animation">
                 <span className="text-[10px] font-mono text-primary">🧠 AI/ML</span>
               </div>
-              <div className="absolute -top-3 -right-3 px-2.5 py-1 rounded-lg bg-card border border-accent/30 shadow-lg float-animation" style={{ animationDelay: "1s" }}>
+              <div className="absolute -top-2 -right-2 px-2.5 py-1 rounded-lg bg-card/90 backdrop-blur border border-border/60 float-animation" style={{ animationDelay: "2s" }}>
                 <span className="text-[10px] font-mono text-accent">⚡ Engineer</span>
-              </div>
-              <div className="absolute top-1/2 -right-5 px-2 py-1 rounded-lg bg-card border border-neon-blue/30 shadow-lg float-animation hidden sm:block" style={{ animationDelay: "3s" }}>
-                <span className="text-[10px] font-mono text-neon-blue">🔮 Neural</span>
               </div>
             </div>
           </div>
@@ -132,14 +121,12 @@ export const Hero = () => {
 
         <a
           href="#about"
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group"
         >
-          <span className="text-[10px] font-mono text-muted-foreground group-hover:text-primary transition-colors">scroll.down()</span>
-          <ArrowDown className="w-4 h-4 text-primary animate-bounce" />
+          <span className="text-[10px] font-mono text-muted-foreground/60 group-hover:text-primary transition-colors">scroll</span>
+          <ArrowDown className="w-4 h-4 text-muted-foreground/40 group-hover:text-primary animate-bounce transition-colors" />
         </a>
       </div>
-
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background pointer-events-none" />
     </section>
   );
 };

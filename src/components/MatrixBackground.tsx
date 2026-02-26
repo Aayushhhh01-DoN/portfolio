@@ -10,48 +10,35 @@ export const MatrixBackground = () => {
     if (!ctx) return;
 
     let animId: number;
-    const chars = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン01";
-    const fontSize = 14;
-    let columns: number;
-    let drops: number[];
 
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      columns = Math.floor(canvas.width / fontSize);
-      drops = Array.from({ length: columns }, () => Math.random() * -100);
     };
     resize();
     window.addEventListener("resize", resize);
 
+    // Subtle dot grid with gentle pulse
     const draw = () => {
-      ctx.fillStyle = "rgba(5, 8, 18, 0.06)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const spacing = 50;
+      const time = Date.now() * 0.0005;
 
-      for (let i = 0; i < drops.length; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
-
-        // Teal-to-amber color variation
-        const hue = 175 + Math.sin(i * 0.1 + Date.now() * 0.001) * 40;
-        const brightness = 35 + Math.random() * 25;
-        ctx.fillStyle = `hsl(${hue}, 80%, ${brightness}%)`;
-        ctx.font = `${fontSize}px JetBrains Mono, monospace`;
-        ctx.fillText(char, x, y);
-
-        if (Math.random() > 0.95) {
-          ctx.shadowBlur = 15;
-          ctx.shadowColor = `hsl(${hue}, 85%, 55%)`;
-          ctx.fillText(char, x, y);
-          ctx.shadowBlur = 0;
+      for (let x = spacing; x < canvas.width; x += spacing) {
+        for (let y = spacing; y < canvas.height; y += spacing) {
+          const dist = Math.sqrt(
+            Math.pow(x - canvas.width / 2, 2) + Math.pow(y - canvas.height / 2, 2)
+          );
+          const wave = Math.sin(dist * 0.005 - time) * 0.5 + 0.5;
+          const alpha = 0.03 + wave * 0.04;
+          
+          ctx.beginPath();
+          ctx.arc(x, y, 1, 0, Math.PI * 2);
+          ctx.fillStyle = `hsla(172, 50%, 55%, ${alpha})`;
+          ctx.fill();
         }
-
-        if (y > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
       }
+
       animId = requestAnimationFrame(draw);
     };
     draw();
@@ -65,7 +52,7 @@ export const MatrixBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-0 pointer-events-none opacity-20"
+      className="fixed inset-0 z-0 pointer-events-none"
     />
   );
 };

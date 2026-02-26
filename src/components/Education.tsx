@@ -8,78 +8,77 @@ const education = [
 ];
 
 const certifications = [
-  { name: "AWS Certified ML – Specialty", issuer: "Amazon Web Services", year: "2024", badge: "AWS", color: "text-accent" },
-  { name: "GCP Professional ML Engineer", issuer: "Google Cloud", year: "2024", badge: "GCP", color: "text-neon-blue" },
-  { name: "Deep Learning Specialization", issuer: "Coursera – DeepLearning.AI", year: "2023", badge: "DL", color: "text-primary" },
-  { name: "TensorFlow Developer Certificate", issuer: "Google", year: "2023", badge: "TF", color: "text-neon-green" },
-  { name: "NLP Specialization", issuer: "Coursera – DeepLearning.AI", year: "2023", badge: "NLP", color: "text-primary" },
-  { name: "Azure AI Engineer Associate", issuer: "Microsoft", year: "2024", badge: "Azure", color: "text-neon-blue" },
+  { name: "AWS Certified ML – Specialty", issuer: "Amazon Web Services", year: "2024", badge: "AWS" },
+  { name: "GCP Professional ML Engineer", issuer: "Google Cloud", year: "2024", badge: "GCP" },
+  { name: "Deep Learning Specialization", issuer: "Coursera – DeepLearning.AI", year: "2023", badge: "DL" },
+  { name: "TensorFlow Developer Certificate", issuer: "Google", year: "2023", badge: "TF" },
+  { name: "NLP Specialization", issuer: "Coursera – DeepLearning.AI", year: "2023", badge: "NLP" },
+  { name: "Azure AI Engineer Associate", issuer: "Microsoft", year: "2024", badge: "Azure" },
 ];
 
 export const Education = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section id="education" className="py-20 sm:py-24 px-4 sm:px-6 md:px-12 lg:px-24 relative">
-      <div ref={ref} className={`container mx-auto max-w-6xl transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-        <div className="flex items-center gap-3 mb-2 justify-center">
-          <div className="h-[1px] w-12 sm:w-16 bg-gradient-to-r from-transparent to-primary/50" />
-          <span className="text-[10px] sm:text-xs font-mono text-primary uppercase tracking-[0.3em] neon-glow">// Credentials</span>
-          <div className="h-[1px] w-12 sm:w-16 bg-gradient-to-l from-transparent to-primary/50" />
+    <section id="education" className="py-20 sm:py-28 px-4 sm:px-6 md:px-12 lg:px-24 relative">
+      <div className="section-divider mb-20 sm:mb-28" />
+      <div ref={ref} className={`container mx-auto max-w-5xl transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+        <div className="text-center mb-14">
+          <span className="text-[10px] sm:text-xs font-mono text-primary/70 uppercase tracking-[0.3em] mb-3 block">Credentials</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+            Education & <span className="gradient-text">Certifications</span>
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground mt-4 max-w-xl mx-auto">
+            Continuous learning through formal education and industry certifications
+          </p>
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-center tracking-tight">
-          Education & <span className="gradient-text">Certs</span>
-        </h2>
-        <p className="text-sm sm:text-base text-muted-foreground text-center mb-10 sm:mb-14 max-w-2xl mx-auto">
-          Continuous learning through formal education and industry certifications
-        </p>
 
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
+        <div className="grid lg:grid-cols-2 gap-10">
           <div className={`transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
-            <div className="flex items-center gap-3 mb-5 sm:mb-6">
-              <div className="p-2 rounded-lg bg-primary/10 border border-primary/20 neon-box">
-                <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2 rounded-lg bg-primary/5 border border-primary/15">
+                <GraduationCap className="w-4 h-4 text-primary" />
               </div>
-              <h3 className="text-lg sm:text-xl font-bold font-mono">Education</h3>
+              <h3 className="text-lg font-bold font-mono">Education</h3>
             </div>
-            <div className="space-y-3 sm:space-y-4">
+            <div className="space-y-3">
               {education.map((item, index) => (
-                <div key={index} className="card-cyber rounded-lg p-4 sm:p-6 hover-lift glow-border">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-0 mb-2">
-                    <h4 className="font-semibold text-sm sm:text-base">{item.degree}</h4>
-                    <span className="text-[10px] font-mono text-primary px-2 py-0.5 sm:py-1 rounded bg-primary/5 border border-primary/20 shrink-0 w-fit neon-box">{item.year}</span>
+                <div key={index} className="glass-card rounded-xl p-5 hover-lift glow-border">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
+                    <h4 className="font-semibold text-sm">{item.degree}</h4>
+                    <span className="text-[10px] font-mono text-primary/70 px-2 py-0.5 rounded-md bg-primary/5 border border-primary/15 shrink-0 w-fit">{item.year}</span>
                   </div>
-                  <p className="text-accent text-xs sm:text-sm font-medium mb-2">{item.institution}</p>
-                  <p className="text-[11px] sm:text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+                  <p className="text-accent/80 text-xs font-medium mb-2">{item.institution}</p>
+                  <p className="text-[11px] text-muted-foreground leading-relaxed">{item.description}</p>
                 </div>
               ))}
             </div>
           </div>
 
           <div className={`transition-all duration-700 delay-400 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}>
-            <div className="flex items-center gap-3 mb-5 sm:mb-6">
-              <div className="p-2 rounded-lg bg-accent/10 border border-accent/20">
-                <Award className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2 rounded-lg bg-accent/5 border border-accent/15">
+                <Award className="w-4 h-4 text-accent" />
               </div>
-              <h3 className="text-lg sm:text-xl font-bold font-mono">Certifications</h3>
+              <h3 className="text-lg font-bold font-mono">Certifications</h3>
             </div>
-            <div className="space-y-2.5 sm:space-y-3">
+            <div className="space-y-2.5">
               {certifications.map((cert, index) => (
                 <div
                   key={index}
-                  className={`card-cyber rounded-lg p-3 sm:p-4 hover-lift group flex items-center gap-3 sm:gap-4 glow-border transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-                  style={{ transitionDelay: `${index * 100 + 500}ms` }}
+                  className={`glass-card rounded-xl p-3.5 hover-lift group flex items-center gap-3 glow-border transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+                  style={{ transitionDelay: `${index * 80 + 400}ms` }}
                 >
-                  <div className="p-1.5 sm:p-2 rounded bg-secondary/50 group-hover:bg-primary/10 transition-colors group-hover:neon-box shrink-0">
-                    <Star className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${cert.color} transition-colors`} />
+                  <div className="p-1.5 rounded-md bg-secondary/40 group-hover:bg-primary/8 transition-colors shrink-0">
+                    <Star className="w-3.5 h-3.5 text-primary/60 group-hover:text-primary transition-colors" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-medium text-xs sm:text-sm leading-tight group-hover:text-primary transition-colors">{cert.name}</h4>
-                    <p className="text-[10px] sm:text-[11px] text-muted-foreground mt-0.5 truncate">{cert.issuer}</p>
+                    <h4 className="font-medium text-xs leading-tight group-hover:text-primary transition-colors">{cert.name}</h4>
+                    <p className="text-[10px] text-muted-foreground mt-0.5 truncate">{cert.issuer}</p>
                   </div>
-                  <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-                    <Badge variant="outline" className="text-[9px] sm:text-[10px] font-mono border-border/50 hover:border-primary/30 px-1.5">{cert.badge}</Badge>
-                    <span className="text-[9px] sm:text-[10px] font-mono text-muted-foreground hidden sm:inline">{cert.year}</span>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <Badge variant="outline" className="text-[9px] font-mono border-border/40 px-1.5">{cert.badge}</Badge>
+                    <span className="text-[9px] font-mono text-muted-foreground/60 hidden sm:inline">{cert.year}</span>
                   </div>
                 </div>
               ))}

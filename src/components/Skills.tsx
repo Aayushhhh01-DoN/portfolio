@@ -86,7 +86,7 @@ export const Skills = () => {
             Tech Stack
           </motion.span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-            <AnimatedText text="My" /> <span className="gradient-text"><AnimatedText text="Skills" delay={0.1} /></span>
+            <AnimatedText text="My" /> <span className="gradient-text"><AnimatedText text="Skills" delay={0.1} /></span> <AnimatedText text="&" delay={0.2} /> <span className="gradient-text"><AnimatedText text="Expertise" delay={0.3} /></span>
           </h2>
           <motion.p
             initial={{ opacity: 0 }}

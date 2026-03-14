@@ -11,7 +11,7 @@ export const AnimatedText = ({ text, className = "", delay = 0, once = true }: A
   const words = text.split(" ");
 
   return (
-    <motion.span className={`inline-flex flex-wrap ${className}`}>
+    <motion.span className={`inline ${className}`}>
       {words.map((word, i) => (
         <motion.span
           key={i}
@@ -23,10 +23,10 @@ export const AnimatedText = ({ text, className = "", delay = 0, once = true }: A
             delay: delay + i * 0.05,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="mr-[0.3em] inline-block"
+          className="inline-block"
           style={{ perspective: "500px" }}
         >
-          {word}
+          {word}{i < words.length - 1 ? "\u00A0" : ""}
         </motion.span>
       ))}
     </motion.span>

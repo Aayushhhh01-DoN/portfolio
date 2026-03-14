@@ -172,36 +172,6 @@ export const Skills = () => {
           </AnimatePresence>
         </div>
 
-        {/* All skills inline */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="mt-12 flex flex-wrap justify-center gap-1.5 max-w-4xl mx-auto"
-        >
-          {skillCategories.flatMap(c => c.skills).map((skill, i) => {
-            const Icon = skill.icon;
-            return (
-              <motion.div
-                key={skill.name}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.02 }}
-                whileHover={{ scale: 1.15, y: -2 }}
-              >
-                <Badge
-                  variant="outline"
-                  className="border-border/40 text-muted-foreground/60 text-[9px] sm:text-[10px] font-mono hover:border-primary/20 hover:text-primary/80 transition-all cursor-default gap-1.5 py-1"
-                >
-                  <Icon className="w-2.5 h-2.5 sm:w-3 sm:h-3" style={{ color: skill.color }} />
-                  {skill.name}
-                </Badge>
-              </motion.div>
-            );
-          })}
-        </motion.div>
       </motion.div>
     </section>
   );
